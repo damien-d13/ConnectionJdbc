@@ -29,6 +29,9 @@ public class HomeController {
     @FXML
     void getOnBdd(ActionEvent event) {
 
+        JdbcDao jdbcDao = new JdbcDao();
+        textuser.setText(jdbcDao.getRecord());
+//        jdbcDao.getRecord();
     }
 
     @FXML

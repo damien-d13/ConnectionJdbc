@@ -1,10 +1,7 @@
 package fr.damien.connectionbdd;
 
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class JdbcDao {
     
@@ -13,6 +10,7 @@ public class JdbcDao {
     private static final String DATABASE_USERNAME = "root";
     private static final String DATABASE_PASSWORD = "";
     private static final String INSERT_QUERY = "INSERT INTO t_user (user_name, user_address) VALUES (?, ?)";
+    private static final String GET_QUERY = "SELECT user_name, user_address FROM t_user";
 
 
     public void insertRecord(String name,String address) throws SQLException {
@@ -34,6 +32,28 @@ public class JdbcDao {
             // print SQL exception information
             printSQLException(e);
         }
+    }
+
+    public String getRecord(){
+
+        String output = "";
+
+        try(Connection conn = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(GET_QUERY);
+        ) {
+            System.out.println("yo");
+            while(rs.next()){
+                //Display values
+               output += "Name : " + rs.getString("user_name") ;
+                output += ", address: " + rs.getString("user_address") + "\n";
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return output;
     }
 
     public static void printSQLException(SQLException ex) {
