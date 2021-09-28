@@ -31,28 +31,16 @@ public class HomeController {
 
         JdbcDao jdbcDao = new JdbcDao();
         textuser.setText(jdbcDao.getRecord());
-//        jdbcDao.getRecord();
     }
 
     @FXML
     void onSendBdd(ActionEvent event) throws SQLException {
         System.out.println("start");
 
-//        Window owner = sendBdd.getScene().getWindow();
 
         System.out.println(userName.getText());
         System.out.println(userAddress.getText());
-//        if (userName.getText().isEmpty()) {
-//            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-//                    "Please enter your name");
-//            return;
-//        }
 
-//        if (userName.getText().isEmpty()) {
-//            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-//                    "Please enter a password");
-//            return;
-//        }
 
         String name = userName.getText();
         String address = userAddress.getText();
@@ -60,8 +48,6 @@ public class HomeController {
         JdbcDao jdbcDao = new JdbcDao();
         jdbcDao.insertRecord(name,  address);
 
-//        showAlert(Alert.AlertType.CONFIRMATION, owner, "Registration Successful!",
-//                "Welcome " + userName.getText());
     }
 
     private static void showAlert(Alert.AlertType alertType, java.awt.Window owner, String title, String message) {
@@ -69,7 +55,7 @@ public class HomeController {
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
-//        alert.initOwner(owner);
+
         alert.show();
     }
 }

@@ -41,7 +41,7 @@ public class JdbcDao {
         try(Connection conn = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(GET_QUERY);
-        ) {
+            ) {
             System.out.println("yo");
             while(rs.next()){
                 //Display values
